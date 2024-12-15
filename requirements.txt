@@ -1,0 +1,5 @@
+PyInstaller
+cryptography==40.0.1
+dropbox
+requests==2.31.0
+python-docx==0.8.11
