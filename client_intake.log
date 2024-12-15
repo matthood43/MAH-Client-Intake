@@ -1,0 +1,230 @@
+2024-12-14 21:11:06,505 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-14 21:11:06,566 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-14 21:11:06,566 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-14 21:11:06,845 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-14 21:11:06,908 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-14 21:11:06,909 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-14 21:11:15,755 - INFO - Authorization code received.
+2024-12-14 21:11:16,017 - WARNING - Authorization code not found in the redirect URI.
+2024-12-14 21:11:30,102 - INFO - Authorization code received.
+2024-12-14 21:11:30,725 - WARNING - Authorization code not found in the redirect URI.
+2024-12-14 21:13:07,286 - ERROR - Authentication timed out.
+2024-12-14 21:13:07,660 - ERROR - Authentication timed out.
+2024-12-14 21:13:39,645 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-14 21:13:39,725 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-14 21:13:39,726 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-14 21:13:40,561 - ERROR - Dropbox client not initialized.
+2024-12-14 21:14:22,252 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:14:22,253 - DEBUG - Email validation for 'test@test.com': True
+2024-12-14 21:14:26,987 - ERROR - An unexpected error occurred: 'NoneType' object has no attribute 'files_get_metadata'
+2024-12-14 21:14:30,467 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:14:30,468 - DEBUG - Email validation for 'test@test.com': True
+2024-12-14 21:14:32,348 - ERROR - An unexpected error occurred: 'NoneType' object has no attribute 'files_get_metadata'
+2024-12-14 21:14:35,253 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:14:35,253 - DEBUG - Email validation for 'test@test.com': True
+024-12-14 21:14:40,631 - ERROR - An unexpected error occurred: 'NoneType' object has no attribute 'files_get_metadata'
+2024-12-14 21:14:45,418 - INFO - Authorization code received.
+2024-12-14 21:14:45,699 - WARNING - Authorization code not found in the redirect URI.
+2024-12-14 21:15:01,039 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-14 21:15:01,166 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-14 21:15:01,166 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-14 21:15:01,423 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-14 21:15:01,471 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-14 21:15:01,471 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-14 21:15:01,799 - ERROR - Dropbox client not initialized.
+2024-12-14 21:15:02,103 - ERROR - Dropbox client not initialized.
+2024-12-14 21:15:12,695 - INFO - Authorization code received.
+2024-12-14 21:15:12,970 - WARNING - Authorization code not found in the redirect URI.
+2024-12-14 21:15:40,419 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:15:40,420 - DEBUG - Email validation for 'sdh@fdls.com': True
+2024-12-14 21:15:45,678 - ERROR - An unexpected error occurred: 'NoneType' obje2ct has no attribute 'files_get_metadata'
+2024-12-14 21:17:01,808 - ERROR - Authentication timed out.
+2024-12-14 21:17:01,810 - ERROR - Authentication failed: Authentication timed out.
+2024-12-14 21:17:02,107 - ERROR - Authentication timed out.
+2024-12-14 21:17:02,109 - ERROR - Authentication failed: Authentication timed out.
+2024-12-14 21:22:39,026 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-14 21:22:39,115 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-14 21:22:39,115 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-14 21:22:48,394 - INFO - Authorization code received.
+2024-12-14 21:22:48,395 - INFO - Exchanging authorization code for access token.
+2024-12-14 21:22:48,411 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 21:22:48,692 - WARNING - Authorization code not found in the redirect URI.
+2024-12-14 21:22:51,355 - DEBUG - https://api.dropboxapi.com:443 "POST /oauth2/token HTTP/11" 200 None
+2024-12-14 21:22:51,356 - INFO - Access token obtained successfully.
+2024-12-14 21:22:51,364 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 21:22:53,386 - INFO - Request to files/get_metadata
+2024-12-14 21:22:53,389 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 21:22:54,567 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/get_metadata HTTP/11" 200 None
+2024-12-14 21:22:54,588 - INFO - Database exists in Dropbox.
+2024-12-14 21:22:56,351 - INFO - Database initialized successfully.
+2024-12-14 21:23:16,125 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:23:16,127 - DEBUG - Email validation for 'fasdffs@gmail.com': True
+2024-12-14 21:23:16,129 - INFO - Request to files/get_metadata
+2024-12-14 21:23:16,364 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/get_metadata HTTP/11" 200 None
+2024-12-14 21:23:16,367 - INFO - Database exists in Dropbox.
+2024-12-14 21:23:16,479 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,481 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,483 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,484 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,486 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,488 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,489 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,491 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,493 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,495 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,496 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,498 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,500 - DEBUG - Data encrypted.
+2024-12-14 21:23:16,728 - ERROR - Error inserting data into the database: ('HYS22', "[HYS22] [Microsoft][ODBC Microsoft Access Driver] The INSERT INTO statement contains the following unknown field name: 'Client_First_Name'. Make sure you have typed the name correctly, and try the operation again. (-1507) (SQLParamData)")
+2024-12-14 21:23:16,729 - INFO - Request to files/create_folder_v2
+2024-12-14 21:23:17,115 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-14 21:23:17,116 - INFO - Main folder created: /asdf_asdf
+2024-12-14 21:23:17,117 - INFO - Request to files/create_folder_v2
+2024-12-14 21:23:17,515 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-14 21:23:17,516 - INFO - Subfolder created: Pleadings
+2024-12-14 21:23:17,517 - INFO - Request to files/create_folder_v2
+2024-12-14 21:23:18,183 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-14 21:23:18,186 - INFO - Subfolder created: Correspondence
+2024-12-14 21:23:18,186 - INFO - Request to files/create_folder_v2
+2024-12-14 21:23:18,568 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-14 21:23:18,569 - INFO - Subfolder created: Prelitigation
+2024-12-14 21:23:18,570 - INFO - Request to files/create_folder_v2
+2024-12-14 21:23:18,961 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-14 21:23:18,962 - INFO - Subfolder created: Case Notes
+2024-12-14 21:23:18,963 - INFO - Request to files/download
+2024-12-14 21:23:18,971 - DEBUG - Starting new HTTPS connection (1): content.dropboxapi.com:443
+2024-12-14 21:23:22,459 - DEBUG - https://content.dropboxapi.com:443 "POST /2/files/download HTTP/11" 409 97
+2024-12-14 21:23:22,460 - ERROR - Error processing fee agreement: ApiError('46070ea7693c462798296185ac59e8b4', DownloadError('path', LookupError('not_found', None)))
+2024-12-14 21:23:22,461 - ERROR - Error uploading to Dropbox: [Errno 2] No such file or directory: 'asdf_asdf_fee_agreement.docx'
+2024-12-14 21:23:22,468 - DEBUG - Starting new HTTPS connection (1): api.harvestapp.com:443
+2024-12-14 21:23:26,086 - DEBUG - https://api.harvestapp.com:443 "POST /v2/projects HTTP/11" 201 None
+2024-12-14 21:23:26,088 - INFO - Harvest project created successfully with an hourly rate of 450.
+2024-12-14 21:23:29,152 - INFO - Client intake process completed successfully for asdf_asdf.
+2024-12-14 21:37:17,559 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 21:37:17,561 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 21:38:08,084 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:38:08,085 - ERROR - Database connection is not initialized.
+2024-12-14 21:38:12,658 - INFO - Submit button clicked. Processing client data.
+2024-12-14 21:38:12,659 - ERROR - Database connection is not initialized.
+2024-12-14 21:48:28,899 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:19:56,306 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:19:56,307 - INFO - Request to users/get_current_account
+2024-12-14 22:19:56,324 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:19:57,906 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:19:57,910 - INFO - Dropbox access token is valid.
+2024-12-14 22:25:27,532 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:25:27,535 - INFO - Request to users/get_current_account
+2024-12-14 22:25:27,549 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:25:30,521 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:25:30,526 - INFO - Dropbox access token is valid.
+2024-12-14 22:25:30,527 - DEBUG - on_token_received triggered.
+2024-12-14 22:25:30,539 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 22:25:33,720 - INFO - Request to files/get_metadata
+2024-12-14 22:25:33,732 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:25:39,329 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/get_metadata HTTP/11" 200 None
+2024-12-14 22:25:39,349 - INFO - Database exists in Dropbox.
+2024-12-14 22:25:42,388 - INFO - Database connection established successfully.
+2024-12-14 22:25:42,389 - INFO - Database initialized successfully.
+2024-12-14 22:25:42,390 - DEBUG - Submit button enabled.
+2024-12-14 22:26:05,637 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:26:05,637 - ERROR - Database connection is not initialized.
+2024-12-14 22:28:34,454 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:28:34,454 - ERROR - Database connection is not initialized.
+2024-12-14 22:30:00,559 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:30:00,560 - INFO - Request to users/get_current_account
+2024-12-14 22:30:00,574 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:30:07,871 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:30:07,877 - INFO - Dropbox access token is valid.
+2024-12-14 22:30:07,877 - DEBUG - on_token_received triggered.
+2024-12-14 22:30:07,884 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 22:31:37,620 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:31:37,625 - INFO - Request to users/get_current_account
+2024-12-14 22:31:37,639 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:31:38,496 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:31:38,498 - INFO - Request to users/get_current_account
+2024-12-14 22:31:38,509 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:31:40,219 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:31:40,220 - INFO - Dropbox access token is valid.
+2024-12-14 22:31:40,220 - DEBUG - on_token_received triggered.
+2024-12-14 22:31:40,223 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 22:31:40,727 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:31:40,729 - INFO - Dropbox access token is valid.
+2024-12-14 22:31:40,729 - DEBUG - on_token_received triggered.
+2024-12-14 22:31:40,732 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 22:32:09,109 - INFO - Request to files/get_metadata
+2024-12-14 22:32:09,115 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:32:09,674 - INFO - Request to files/get_metadata
+2024-12-14 22:32:09,684 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:32:11,752 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/get_metadata HTTP/11" 200 None
+2024-12-14 22:32:11,765 - INFO - Database exists in Dropbox.
+2024-12-14 22:32:11,765 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-14 22:32:13,663 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/get_metadata HTTP/11" 200 None
+2024-12-14 22:32:13,675 - INFO - Database exists in Dropbox.
+2024-12-14 22:32:13,675 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-14 22:32:13,955 - INFO - Database connection established successfully.
+2024-12-14 22:32:13,955 - INFO - Database initialized successfully.
+2024-12-14 22:32:13,956 - DEBUG - Submit button enabled.
+2024-12-14 22:32:15,354 - INFO - Database connection established successfully.
+2024-12-14 22:32:15,355 - INFO - Database initialized successfully.
+2024-12-14 22:32:15,355 - DEBUG - Submit button enabled.
+2024-12-14 22:33:27,300 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:33:27,301 - ERROR - Database connection is not initialized.
+2024-12-14 22:33:46,977 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:33:46,978 - ERROR - Database connection is not initialized.
+2024-12-14 22:36:11,425 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:36:11,428 - INFO - Request to users/get_current_account
+2024-12-14 22:36:11,440 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:36:15,492 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:36:15,498 - INFO - Dropbox access token is valid.
+2024-12-14 22:36:15,499 - DEBUG - on_token_received triggered.
+2024-12-14 22:36:15,505 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 22:36:19,948 - INFO - Request to files/get_metadata
+2024-12-14 22:36:19,963 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:36:25,744 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/get_metadata HTTP/11" 200 None
+2024-12-14 22:36:25,764 - INFO - Database exists in Dropbox.
+2024-12-14 22:36:25,764 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-14 22:36:29,252 - INFO - Database connection established successfully.
+2024-12-14 22:36:29,252 - INFO - Database initialized successfully.
+2024-12-14 22:36:29,253 - DEBUG - Submit button enabled.
+2024-12-14 22:36:59,000 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:36:59,000 - ERROR - Database connection is not initialized.
+2024-12-14 22:37:01,644 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:37:01,644 - ERROR - Database connection is not initialized.
+2024-12-14 22:39:25,131 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:39:25,132 - INFO - Request to users/get_current_account
+2024-12-14 22:39:25,138 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:39:26,649 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:39:26,653 - INFO - Dropbox access token is valid.
+2024-12-14 22:39:26,653 - DEBUG - on_token_received triggered.
+2024-12-14 22:39:26,672 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-14 22:39:29,059 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-14 22:39:30,108 - INFO - Database connection established successfully.
+2024-12-14 22:39:30,108 - INFO - Database initialized successfully.
+2024-12-14 22:39:30,109 - DEBUG - Submit button enabled.
+2024-12-14 22:39:50,367 - INFO - Submit button clicked. Processing client data.
+2024-12-14 22:39:50,368 - ERROR - Database connection is not initialized.
+2024-12-14 22:42:51,760 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:42:51,763 - INFO - Request to users/get_current_account
+2024-12-14 22:42:51,775 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:42:53,729 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:42:53,732 - INFO - Dropbox access token is valid.
+2024-12-14 22:47:00,098 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:47:00,100 - INFO - Request to users/get_current_account
+2024-12-14 22:47:00,110 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:47:02,181 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:47:02,185 - INFO - Dropbox access token is valid.
+2024-12-14 22:51:55,347 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:51:55,350 - INFO - Request to users/get_current_account
+2024-12-14 22:51:55,361 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:51:55,790 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:51:55,792 - INFO - Request to users/get_current_account
+2024-12-14 22:51:55,806 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:51:57,608 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:51:57,610 - INFO - Dropbox access token is valid.
+2024-12-14 22:51:57,797 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:51:57,800 - INFO - Dropbox access token is valid.
+2024-12-14 22:55:41,600 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-14 22:55:41,603 - INFO - Request to users/get_current_account
+2024-12-14 22:55:41,619 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-14 22:55:45,517 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-14 22:55:45,522 - INFO - Dropbox access token is valid.
