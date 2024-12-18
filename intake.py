@@ -10,6 +10,7 @@ from cryptography.fernet import Fernet
 from docx import Document
 from io import BytesIO
 from dotenv import load_dotenv
+from pathlib import Path
 
 # PyQt5 imports for GUI
 import sys
@@ -32,6 +33,11 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     level=logging.DEBUG  # Set to DEBUG for comprehensive logging
 )
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)  # Adjust as needed
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+console.setFormatter(formatter)
+logging.getLogger('').addHandler(console)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -51,10 +57,14 @@ HARVEST_ACCOUNT_ID = os.getenv("HARVEST_ACCOUNT_ID")
 HARVEST_TOKEN = os.getenv("HARVEST_TOKEN")  # Replace with actual token
 
 # Bosch Client ID in Harvest (replace with the actual client_id for Bosch)
-HARVEST_BOSCH_CLIENT_ID = 6685250
+HARVEST_BOSCH_CLIENT_ID = int(os.getenv("HARVEST_BOSCH_CLIENT_ID", 0))
 
 # Database Path (Ensure this path is correct and accessible)
-LOCAL_DB_PATH = r"C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb"
+LOCAL_DB_PATH = os.getenv("LOCAL_DB_PATH", default=r"C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb")
+
+# Fee Agreement Template Path
+FEE_AGREEMENT_TEMPLATE_PATH = os.getenv("FEE_AGREEMENT_TEMPLATE_PATH",
+                                        default=r"C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx")
 
 # ------------------------------ Encryption Setup ------------------------------ #
 
@@ -73,10 +83,11 @@ def load_key():
     Loads the encryption key from 'encryption_key.key'.
     If the key file does not exist, it generates a new key.
     """
-    if not os.path.exists("encryption_key.key"):
+    key_path = Path("encryption_key.key")
+    if not key_path.exists():
         logging.info("Encryption key not found. Generating a new key.")
         generate_key()
-    with open("encryption_key.key", "rb") as key_file:
+    with key_path.open("rb") as key_file:
         key = key_file.read()
     return key
 
@@ -85,17 +96,24 @@ def encrypt_data(data):
     Encrypts the provided data using Fernet symmetric encryption.
 
     Args:
-        data (str): The plaintext data to encrypt.
+        data (str or None): The plaintext data to encrypt.
 
     Returns:
         str: The encrypted data encoded in base64.
     """
-    key = load_key()
-    f = Fernet(key)
-    encrypted_data = f.encrypt(data.encode())
-    encrypted_b64 = base64.b64encode(encrypted_data).decode('utf-8')
-    logging.debug("Data encrypted.")
-    return encrypted_b64
+    try:
+        if data is None:
+            data = ""
+            logging.debug("Received None, converting to empty string for encryption.")
+        key = load_key()
+        f = Fernet(key)
+        encrypted_data = f.encrypt(data.encode())
+        encrypted_b64 = base64.b64encode(encrypted_data).decode('utf-8')
+        logging.debug("Data encrypted.")
+        return encrypted_b64
+    except Exception as e:
+        logging.error(f"Encryption failed: {e}", exc_info=True)
+        raise
 
 def decrypt_data(encrypted_data):
     """
@@ -107,12 +125,16 @@ def decrypt_data(encrypted_data):
     Returns:
         str: The decrypted plaintext data.
     """
-    key = load_key()
-    f = Fernet(key)
-    decrypted_data = f.decrypt(base64.b64decode(encrypted_data))
-    decrypted_str = decrypted_data.decode('utf-8')
-    logging.debug("Data decrypted.")
-    return decrypted_str
+    try:
+        key = load_key()
+        f = Fernet(key)
+        decrypted_data = f.decrypt(base64.b64decode(encrypted_data))
+        decrypted_str = decrypted_data.decode('utf-8')
+        logging.debug("Data decrypted.")
+        return decrypted_str
+    except Exception as e:
+        logging.error(f"Decryption failed: {e}", exc_info=True)
+        raise
 
 # ------------------------------ Validation Functions ------------------------------ #
 
@@ -158,7 +180,7 @@ def is_valid_address(address):
     Returns:
         bool: True if valid, False otherwise.
     """
-    # Simple regex to check for City, State, Zip
+    # Simple regex to check for street, city, state, and zip code
     # Example: "123 Main St, Springfield, IL 62704"
     address_regex = r"^[\d\w\s,.]+,\s*[\w\s]+,\s*[A-Z]{2}\s*\d{5}(-\d{4})?$"
     valid = re.match(address_regex, address) is not None
@@ -171,6 +193,7 @@ class RedirectHandler(BaseHTTPRequestHandler):
     """
     HTTP request handler to capture the OAuth2 redirect with the authorization code.
     """
+
     def do_GET(self):
         parsed_url = urlparse(self.path)
         params = parse_qs(parsed_url.query)
@@ -236,7 +259,12 @@ class OAuthHandlerWithServer(QObject):
 
         logging.info("Opening web browser for Dropbox OAuth2 authorization.")
         # Open the authorization URL in the default web browser
-        webbrowser.open(auth_url)
+        try:
+            webbrowser.open(auth_url)
+            logging.info("Opened web browser for Dropbox OAuth2 authorization.")
+        except Exception as e:
+            logging.error(f"Failed to open web browser: {e}")
+            self.auth_failed.emit(f"Failed to open web browser: {e}")
 
         # Start a thread to wait for the auth code
         wait_thread = threading.Thread(target=self.wait_for_code)
@@ -304,16 +332,16 @@ class DropboxClientInitializer(QObject):
         self.db_client = None
 
     def initialize_dropbox_client(self):
-        token_file = "dropbox_token.json"
-        key_file = "encryption_key.key"
+        token_file = Path("dropbox_token.json")
+        key_file = Path("encryption_key.key")
 
         # Check if the token file exists
-        if os.path.exists(token_file):
+        if token_file.exists():
             try:
-                with open(key_file, "rb") as f:
+                with key_file.open("rb") as f:
                     key = f.read()
                 fernet = Fernet(key)
-                with open(token_file, "rb") as f:
+                with token_file.open("rb") as f:
                     encrypted_data = f.read()
                 decrypted_data = fernet.decrypt(encrypted_data)
                 tokens = json.loads(decrypted_data.decode('utf-8'))
@@ -355,14 +383,14 @@ def upload_to_dropbox(db_client, local_path, dropbox_path):
 
     Args:
         db_client (dropbox.Dropbox): Authenticated Dropbox client.
-        local_path (str): Path to the local file.
+        local_path (Path): Path to the local file.
         dropbox_path (str): Destination path in Dropbox.
 
     Raises:
         Exception: If the upload fails.
     """
     try:
-        with open(local_path, "rb") as file:
+        with local_path.open("rb") as file:
             db_client.files_upload(file.read(), dropbox_path, mode=dropbox.files.WriteMode.overwrite)
             logging.info(f"Uploaded to Dropbox: {dropbox_path}")
     except Exception as e:
@@ -376,14 +404,14 @@ def download_from_dropbox(db_client, dropbox_path, local_path):
     Args:
         db_client (dropbox.Dropbox): Authenticated Dropbox client.
         dropbox_path (str): Path to the file in Dropbox.
-        local_path (str): Destination path on the local machine.
+        local_path (Path): Destination path on the local machine.
 
     Raises:
         Exception: If the download fails.
     """
     try:
         metadata, res = db_client.files_download(path=dropbox_path)
-        with open(local_path, "wb") as f:
+        with local_path.open("wb") as f:
             f.write(res.content)
         logging.info(f"Downloaded from Dropbox: {dropbox_path} to {local_path}")
     except dropbox.exceptions.ApiError as e:
@@ -400,7 +428,7 @@ def initialize_database(db_client, local_db_path):
 
     Args:
         db_client (dropbox.Dropbox): Authenticated Dropbox client.
-        local_db_path (str): Path to the local Access database.
+        local_db_path (Path): Path to the local Access database.
 
     Returns:
         pyodbc.Connection: Active database connection.
@@ -412,7 +440,7 @@ def initialize_database(db_client, local_db_path):
     db_dropbox_path = "/Client Intake Program/Clients1.accdb"
 
     # Check if the local database file exists
-    if not os.path.exists(local_db_path):
+    if not local_db_path.exists():
         logging.warning(f"Local database file not found at '{local_db_path}'. Attempting to download from Dropbox.")
         try:
             # Attempt to download the database from Dropbox
@@ -424,7 +452,7 @@ def initialize_database(db_client, local_db_path):
 
     try:
         connection_string = (
-            r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + local_db_path
+            r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + str(local_db_path)
         )
         # Include password only if applicable
         DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
@@ -439,13 +467,39 @@ def initialize_database(db_client, local_db_path):
         logging.error(f"Failed to connect to the database: {e}")
         raise
 
-def insert_client_data(conn, encrypted_data_map):
+def list_table_columns(conn, table_name):
     """
-    Inserts encrypted client data into the database.
+    Lists the column names of a specified table in the database.
 
     Args:
         conn (pyodbc.Connection): Active database connection.
-        encrypted_data_map (dict): Dictionary containing encrypted client data.
+        table_name (str): Name of the table to inspect.
+
+    Returns:
+        list: List of column names.
+
+    Raises:
+        Exception: If unable to retrieve column information.
+    """
+    try:
+        cursor = conn.cursor()
+        # Use the system tables to get column names
+        cursor.execute(f"SELECT * FROM [{table_name}] WHERE 1=0")
+        columns = [column[0] for column in cursor.description]
+        logging.info(f"Columns in '{table_name}' table: {columns}")
+        return columns
+    except Exception as e:
+        logging.error(f"Error retrieving columns for table '{table_name}': {e}")
+        raise
+
+def insert_client_data(conn, client_data, encrypted_data):
+    """
+    Inserts client data into the database.
+
+    Args:
+        conn (pyodbc.Connection): Active database connection.
+        client_data (dict): Dictionary containing client information.
+        encrypted_data (str): Encrypted JSON string of client_data.
 
     Raises:
         Exception: If the insertion fails.
@@ -454,22 +508,22 @@ def insert_client_data(conn, encrypted_data_map):
         cursor = conn.cursor()
         cursor.execute(
             '''INSERT INTO Clients (
-                Client_First_Name, Client_Last_Name, Opposing_Party, Client_Email, Client_Address, Client_Phone,
-                Fee_Arrangement, Hourly_Rate, Contingency_Percentage, Primary_Attorney, EncryptedData, IsBosch
+                Client_FirstName, Client_LastName, Opposing_Party, Client_Email, Client_Address, Client_Phone,
+                Fee_Arrangement, Contingency_Amount, Hourly_Amount, Primary_Attorney, EncryptedData, IsBosch
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
             (
-                encrypted_data_map.get('Client_First_Name'),
-                encrypted_data_map.get('Client_Last_Name'),
-                encrypted_data_map.get('Opposing_Party'),
-                encrypted_data_map.get('Client_Email'),
-                encrypted_data_map.get('Client_Address'),
-                encrypted_data_map.get('Client_Phone'),
-                encrypted_data_map.get('Fee_Arrangement'),
-                encrypted_data_map.get('Hourly_Rate'),
-                encrypted_data_map.get('Contingency_Percentage'),
-                encrypted_data_map.get('Primary_Attorney'),
-                encrypted_data_map.get('EncryptedData'),
-                encrypted_data_map.get('IsBosch')
+                client_data.get('Client_FirstName'),
+                client_data.get('Client_LastName'),
+                client_data.get('Opposing_Party'),
+                client_data.get('Client_Email'),
+                client_data.get('Client_Address'),
+                client_data.get('Client_Phone'),
+                client_data.get('Fee_Arrangement'),
+                client_data.get('Contingency_Amount'),
+                client_data.get('Hourly_Amount'),
+                client_data.get('Primary_Attorney'),
+                encrypted_data,
+                client_data.get('IsBosch')
             )
         )
         conn.commit()
@@ -533,19 +587,29 @@ def create_fee_agreement(client_data, template_path, output_filename):
         BytesIO: In-memory binary stream of the personalized document.
 
     Raises:
+        FileNotFoundError: If the template file does not exist.
         Exception: If the document creation fails.
     """
     try:
+        # Convert template_path to a Path object for better path handling
+        template = Path(template_path)
+        logging.debug(f"Attempting to load template from: {template}")
+
+        if not template.exists():
+            error_msg = f"Fee agreement template not found at '{template}'. Please ensure the file exists."
+            logging.error(error_msg)
+            raise FileNotFoundError(error_msg)
+
         # Load the template document
-        document = Document(template_path)
-        logging.info(f"Loaded template from '{template_path}'.")
+        document = Document(str(template))
+        logging.info(f"Loaded template from '{template}'.")
 
         # Replace placeholders in paragraphs
         for paragraph in document.paragraphs:
             for key, value in client_data.items():
                 if value is None:
                     value = ""
-                placeholder = f"{{{key}}}"
+                placeholder = f"{{{key}}}"  # e.g., {Client_FirstName}
                 if placeholder in paragraph.text:
                     paragraph.text = paragraph.text.replace(placeholder, value)
                     logging.debug(f"Replaced '{placeholder}' with '{value}' in paragraph.")
@@ -557,7 +621,7 @@ def create_fee_agreement(client_data, template_path, output_filename):
                     for key, value in client_data.items():
                         if value is None:
                             value = ""
-                        placeholder = f"{{{key}}}"
+                        placeholder = f"{{{key}}}"  # e.g., {Client_FirstName}
                         if placeholder in cell.text:
                             cell.text = cell.text.replace(placeholder, value)
                             logging.debug(f"Replaced '{placeholder}' with '{value}' in table cell.")
@@ -569,6 +633,9 @@ def create_fee_agreement(client_data, template_path, output_filename):
         logging.info(f"Personalized fee agreement '{output_filename}' created in memory.")
 
         return output_stream
+    except FileNotFoundError as fnf_error:
+        logging.error(fnf_error)
+        raise
     except Exception as e:
         logging.error(f"Error creating fee agreement: {e}", exc_info=True)
         raise
@@ -586,39 +653,11 @@ def upload_fee_agreement(db_client, fee_agreement_stream, fee_agreement_dropbox_
         Exception: If the upload fails.
     """
     try:
-        db_client.files_upload(fee_agreement_stream.read(), fee_agreement_dropbox_path, mode=dropbox.files.WriteMode.overwrite)
+        db_client.files_upload(fee_agreement_stream.read(), fee_agreement_dropbox_path,
+                               mode=dropbox.files.WriteMode.overwrite)
         logging.info(f"Uploaded fee agreement to '{fee_agreement_dropbox_path}'.")
     except Exception as e:
         logging.error(f"Failed to upload fee agreement: {e}", exc_info=True)
-        raise
-
-def process_fee_agreement(db_client, client_data, client_name):
-    """
-    Creates and uploads the fee agreement document for the client.
-
-    Args:
-        db_client (dropbox.Dropbox): Authenticated Dropbox client.
-        client_data (dict): Dictionary containing client information.
-        client_name (str): Full name of the client (e.g., 'John_Doe').
-
-    Raises:
-        Exception: If processing fails.
-    """
-    try:
-        # Define template path and output filename
-        template_path = r"C:\users\matt\Client Intake Program\Fee_Agreement.docx"
-        output_filename = f"Fee Agreement - {client_data['Client_First_Name']} {client_data['Client_Last_Name']}.docx"
-
-        # Create the personalized fee agreement document
-        fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
-
-        # Define the Dropbox path for the fee agreement
-        fee_agreement_dropbox_path = f"/{client_name}/Correspondence/{output_filename}"
-
-        # Upload the fee agreement to Dropbox
-        upload_fee_agreement(db_client, fee_agreement_stream, fee_agreement_dropbox_path)
-    except Exception as e:
-        logging.error(f"Failed to process fee agreement: {e}", exc_info=True)
         raise
 
 def create_harvest_project(client_data, harvest_bosch_client_id):
@@ -641,19 +680,52 @@ def create_harvest_project(client_data, harvest_bosch_client_id):
 
     project_data = {
         "client_id": harvest_bosch_client_id,
-        "name": f"{client_data['Client_First_Name']} {client_data['Client_Last_Name']}",
+        "name": f"{client_data['Client_FirstName']} {client_data['Client_LastName']}",
         "is_billable": True,
         "bill_by": "Project",
         "hourly_rate": 450.0
     }
 
-    response = requests.post("https://api.harvestapp.com/v2/projects", json=project_data, headers=headers)
-    if response.status_code == 201:
-        logging.info("Harvest project created successfully with an hourly rate of 450.")
-    else:
-        error_msg = f"Failed to create Harvest project: {response.status_code}, {response.text}"
-        logging.error(error_msg)
-        raise Exception("Harvest project creation failed.")
+    try:
+        response = requests.post("https://api.harvestapp.com/v2/projects", json=project_data, headers=headers)
+        if response.status_code == 201:
+            logging.info("Harvest project created successfully with an hourly rate of 450.")
+        else:
+            error_msg = f"Failed to create Harvest project: {response.status_code}, {response.text}"
+            logging.error(error_msg)
+            raise Exception("Harvest project creation failed.")
+    except Exception as e:
+        logging.error(f"An error occurred while creating Harvest project: {e}")
+        raise
+
+def process_fee_agreement(db_client, client_data, client_name):
+    """
+    Creates and uploads the fee agreement document for the client.
+
+    Args:
+        db_client (dropbox.Dropbox): Authenticated Dropbox client.
+        client_data (dict): Dictionary containing client information.
+        client_name (str): Full name of the client (e.g., 'John_Doe').
+
+    Raises:
+        Exception: If processing fails.
+    """
+    try:
+        # Define template path and output filename
+        template_path = FEE_AGREEMENT_TEMPLATE_PATH
+        output_filename = f"Fee Agreement - {client_data['Client_FirstName']} {client_data['Client_LastName']}.docx"
+
+        # Create the personalized fee agreement document
+        fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+
+        # Define the Dropbox path for the fee agreement
+        fee_agreement_dropbox_path = f"/{client_name}/Correspondence/{output_filename}"
+
+        # Upload the fee agreement to Dropbox
+        upload_fee_agreement(db_client, fee_agreement_stream, fee_agreement_dropbox_path)
+    except Exception as e:
+        logging.error(f"Failed to process fee agreement: {e}", exc_info=True)
+        raise
 
 def process_client_data(db_client, db_conn, client_data):
     """
@@ -689,20 +761,58 @@ def process_client_data(db_client, db_conn, client_data):
         logging.warning(error_msg)
         raise ValueError(error_msg)
 
-    # Encrypt data
+    # Optional: Verify table columns
+    table_columns = list_table_columns(db_conn, "Clients")
+    expected_columns = [
+        "Client_FirstName", "Client_LastName", "Opposing_Party", "Client_Email",
+        "Client_Address", "Client_Phone", "Fee_Arrangement", "Contingency_Amount",
+        "Hourly_Amount", "Primary_Attorney", "EncryptedData", "IsBosch"
+    ]
+    missing_columns = [col for col in expected_columns if col not in table_columns]
+    if missing_columns:
+        error_msg = f"The following required columns are missing in the 'Clients' table: {missing_columns}"
+        logging.error(error_msg)
+        raise ValueError(error_msg)
+
+    # Prepare data for insertion
+    # Convert string amounts to floats only if applicable
+    try:
+        if client_data['Fee_Arrangement'] == "Contingency":
+            contingency_percentage = client_data.get('Contingency_Percentage', "0.0")
+            if contingency_percentage is None or contingency_percentage == "":
+                contingency_percentage = "0.0"
+            client_data['Contingency_Amount'] = float(contingency_percentage)
+        else:
+            client_data['Contingency_Amount'] = 0.0
+
+        if client_data['Fee_Arrangement'] == "Hourly":
+            hourly_rate = client_data.get('Hourly_Rate', "0.0")
+            if hourly_rate is None or hourly_rate == "":
+                hourly_rate = "0.0"
+            client_data['Hourly_Amount'] = float(hourly_rate)
+        else:
+            client_data['Hourly_Amount'] = 0.0
+    except ValueError:
+        error_msg = "Contingency amount and Hourly amount must be valid numbers."
+        logging.error(error_msg)
+        raise ValueError(error_msg)
+
+    # Convert 'IsBosch' to Boolean
+    client_data['IsBosch'] = client_data.get('IsBosch') == "True"
+
+    # Encrypt all client data and store in 'EncryptedData'
     raw_json = json.dumps(client_data)
-    encrypted_data_map = {key: encrypt_data(value) for key, value in client_data.items()}
-    encrypted_data_map['EncryptedData'] = encrypt_data(raw_json)
+    encrypted_data = encrypt_data(raw_json)
 
     # Insert data into the database
     try:
-        insert_client_data(db_conn, encrypted_data_map)
+        insert_client_data(db_conn, client_data, encrypted_data)
     except Exception as e:
         logging.error(f"Inserting client data failed: {e}")
         raise
 
     # Create Dropbox folders
-    client_name = f"{client_data['Client_First_Name']}_{client_data['Client_Last_Name']}"
+    client_name = f"{client_data['Client_FirstName']}_{client_data['Client_LastName']}"
     try:
         create_dropbox_folders(db_client, client_name)
     except Exception as e:
@@ -717,7 +827,7 @@ def process_client_data(db_client, db_conn, client_data):
         raise
 
     # Create Harvest project if applicable
-    if client_data['IsBosch'] == "True":
+    if client_data['IsBosch']:
         try:
             create_harvest_project(client_data, HARVEST_BOSCH_CLIENT_ID)
         except Exception as e:
@@ -744,12 +854,12 @@ class InitializationWorker(QObject):
         Executes the Dropbox client initialization.
         """
         try:
-            # Initialize Dropbox client
-            self.db_initializer.initialize_dropbox_client()
-
-            # Connect signals for token received and auth failed
+            # Connect signals for token received and auth failed BEFORE initialization
             self.db_initializer.token_received.connect(self.on_token_received)
             self.db_initializer.auth_failed.connect(self.on_auth_failed)
+
+            # Initialize Dropbox client
+            self.db_initializer.initialize_dropbox_client()
 
         except Exception as e:
             logging.error(f"InitializationWorker encountered an error: {e}")
@@ -761,12 +871,12 @@ class InitializationWorker(QObject):
         """
         try:
             # Encrypt and save the token
-            with open("encryption_key.key", "rb") as f:
+            with Path("encryption_key.key").open("rb") as f:
                 key = f.read()
             fernet = Fernet(key)
             tokens = {"access_token": token}
             encrypted_data = fernet.encrypt(json.dumps(tokens).encode('utf-8'))
-            with open("dropbox_token.json", "wb") as f:
+            with Path("dropbox_token.json").open("wb") as f:
                 f.write(encrypted_data)
             logging.info("Access token encrypted and saved to 'dropbox_token.json'.")
             self.initialization_complete.emit()
@@ -787,6 +897,7 @@ class ClientIntakeWindow(QMainWindow):
     """
     The main window of the Client Intake System application.
     """
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Client Intake System")
@@ -873,6 +984,17 @@ class ClientIntakeWindow(QMainWindow):
         # Initialize database connection once Dropbox is ready
         self.db_conn = None  # Will be set after Dropbox initialization
 
+        # ------------------------------ Input Validators ------------------------------ #
+        from PyQt5.QtGui import QDoubleValidator
+
+        # Set validator for Hourly Rate
+        double_validator = QDoubleValidator(0.0, 10000.0, 2)
+        self.hourly_rate_input.setValidator(double_validator)
+
+        # Set validator for Contingency Percentage
+        double_validator_percentage = QDoubleValidator(0.0, 100.0, 2)
+        self.contingency_percentage_input.setValidator(double_validator_percentage)
+
     def capitalize_first_letter(self):
         """
         Capitalizes the first letter of the input field.
@@ -908,8 +1030,12 @@ class ClientIntakeWindow(QMainWindow):
         """
         try:
             # Initialize database connection
-            self.db_conn = initialize_database(self.db_initializer.db_client, LOCAL_DB_PATH)
+            self.db_conn = initialize_database(self.db_initializer.db_client, Path(LOCAL_DB_PATH))
             logging.info("Database initialized successfully.")
+
+            # Verify database schema
+            verify_database_schema(self.db_conn)
+
             self.status_label.setText("Initialization complete. You can now submit client data.")
             self.submit_button.setEnabled(True)
             logging.debug("Submit button enabled.")
@@ -933,13 +1059,14 @@ class ClientIntakeWindow(QMainWindow):
         Validates input, processes client data, and provides feedback to the user.
         """
         client_data = {
-            "Client_First_Name": self.first_name_input.text().strip(),
-            "Client_Last_Name": self.last_name_input.text().strip(),
+            "Client_FirstName": self.first_name_input.text().strip(),
+            "Client_LastName": self.last_name_input.text().strip(),
             "Opposing_Party": self.opposing_party_input.text().strip(),
             "Client_Email": self.email_input.text().strip(),
             "Client_Address": self.address_input.text().strip(),
             "Client_Phone": self.phone_input.text().strip(),
-            "Fee_Arrangement": self.fee_arrangement_dropdown.currentText() if self.fee_arrangement_dropdown.currentText() in ["Hourly", "Contingency"] else "",
+            "Fee_Arrangement": self.fee_arrangement_dropdown.currentText() if self.fee_arrangement_dropdown.currentText() in [
+                "Hourly", "Contingency"] else "",
             "Hourly_Rate": self.hourly_rate_input.text().strip() if self.fee_arrangement_dropdown.currentText() == "Hourly" else None,
             "Contingency_Percentage": self.contingency_percentage_input.text().strip() if self.fee_arrangement_dropdown.currentText() == "Contingency" else None,
             "Primary_Attorney": self.primary_attorney_input.text().strip(),
@@ -966,8 +1093,6 @@ class ClientIntakeWindow(QMainWindow):
                     raise ValueError("Contingency Percentage is required for Contingency fee arrangement.")
                 if not re.match(r'^\d+(\.\d{1,2})?$', client_data['Contingency_Percentage']):
                     raise ValueError("Contingency Percentage must be a valid number (up to two decimal places).")
-                if float(client_data['Contingency_Percentage']) > 100:
-                    raise ValueError("Contingency Percentage cannot exceed 100%.")
 
             # Process client data
             client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
@@ -999,6 +1124,35 @@ class ClientIntakeWindow(QMainWindow):
         self.contingency_percentage_input.clear()
         self.primary_attorney_input.clear()
         self.bosch_checkbox.setChecked(False)
+
+# ------------------------------ Helper Functions ------------------------------ #
+
+def verify_database_schema(conn):
+    """
+    Verifies that all required columns exist in the 'Clients' table.
+
+    Args:
+        conn (pyodbc.Connection): Active database connection.
+
+    Raises:
+        ValueError: If any required columns are missing.
+    """
+    table_name = "Clients"
+    expected_columns = [
+        "Client_FirstName", "Client_LastName", "Opposing_Party", "Client_Email",
+        "Client_Address", "Client_Phone", "Fee_Arrangement", "Contingency_Amount",
+        "Hourly_Amount", "Primary_Attorney", "EncryptedData", "IsBosch"
+    ]
+
+    actual_columns = list_table_columns(conn, table_name)
+    missing_columns = [col for col in expected_columns if col not in actual_columns]
+
+    if missing_columns:
+        error_msg = f"Missing columns in '{table_name}' table: {missing_columns}"
+        logging.error(error_msg)
+        raise ValueError(error_msg)
+    else:
+        logging.info(f"All required columns are present in the '{table_name}' table.")
 
 # ------------------------------ Main Application Entry Point ------------------------------ #
 

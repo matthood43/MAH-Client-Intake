@@ -228,3 +228,1441 @@
 2024-12-14 22:55:41,619 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
 2024-12-14 22:55:45,517 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
 2024-12-14 22:55:45,522 - INFO - Dropbox access token is valid.
+2024-12-18 10:20:31,396 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:20:31,402 - INFO - Request to users/get_current_account
+2024-12-18 10:20:31,423 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:20:35,539 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 401 81
+2024-12-18 10:20:35,542 - INFO - ExpiredCredentials status_code=401: Refreshing and Retrying
+2024-12-18 10:20:35,543 - WARNING - Unable to refresh access token without                 refresh token and app key
+2024-12-18 10:20:35,544 - INFO - Request to users/get_current_account
+2024-12-18 10:20:35,823 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 401 81
+2024-12-18 10:20:35,824 - ERROR - Invalid access token: AuthError('757f3f4a340147d4b828156745f1d37d', AuthError('expired_access_token', None))
+2024-12-18 10:20:35,825 - INFO - Initiating OAuth2 authentication flow for Dropbox.
+2024-12-18 10:20:35,866 - INFO - Started local HTTP server on port 5000 to capture OAuth2 redirect.
+2024-12-18 10:20:35,866 - INFO - Opening web browser for Dropbox OAuth2 authorization.
+2024-12-18 10:20:36,629 - INFO - Opened web browser for Dropbox OAuth2 authorization.
+2024-12-18 10:20:47,850 - INFO - Authorization code received.
+2024-12-18 10:20:47,852 - INFO - Exchanging authorization code for access token.
+2024-12-18 10:20:47,864 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:20:48,889 - WARNING - Authorization code not found in the redirect URI.
+2024-12-18 10:20:52,588 - DEBUG - https://api.dropboxapi.com:443 "POST /oauth2/token HTTP/11" 200 None
+2024-12-18 10:20:52,591 - INFO - Access token obtained successfully.
+2024-12-18 10:20:52,609 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:20:52,612 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:20:54,940 - INFO - Database connection established successfully.
+2024-12-18 10:20:54,940 - INFO - Database initialized successfully.
+2024-12-18 10:20:54,941 - DEBUG - Submit button enabled.
+2024-12-18 10:21:13,983 - WARNING - Authorization code not found in the redirect URI.
+2024-12-18 10:21:15,173 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:21:15,175 - DEBUG - Email validation for 'matt@matt.com': True
+2024-12-18 10:21:15,177 - DEBUG - Phone validation for 'dsakfjasd': False
+2024-12-18 10:21:15,177 - WARNING - Invalid phone number. Please enter a valid phone number with 10-15 digits.
+2024-12-18 10:21:17,422 - WARNING - Validation error: Invalid phone number. Please enter a valid phone number with 10-15 digits.
+2024-12-18 10:21:28,088 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:21:28,088 - DEBUG - Email validation for 'matt@matt.com': True
+2024-12-18 10:21:28,089 - DEBUG - Phone validation for '323-544-4545': True
+2024-12-18 10:21:28,090 - DEBUG - Address validation for 'lkajsdf': False
+2024-12-18 10:21:28,090 - WARNING - Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:21:29,846 - WARNING - Validation error: Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:21:39,303 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:21:39,304 - DEBUG - Email validation for 'matt@matt.com': True
+2024-12-18 10:21:39,304 - DEBUG - Phone validation for '323-544-4545': True
+2024-12-18 10:21:39,304 - DEBUG - Address validation for '123 Main Street, Atlanta, GA 30339': True
+2024-12-18 10:21:39,308 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,310 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,312 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,314 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,316 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,318 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,319 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,321 - DEBUG - Data encrypted.
+2024-12-18 10:21:39,322 - ERROR - Encryption failed: 'NoneType' object has no attribute 'encode'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 104, in encrypt_data
+    encrypted_data = f.encrypt(data.encode())
+                               ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'encode'
+2024-12-18 10:21:46,116 - ERROR - An unexpected error occurred: 'NoneType' object has no attribute 'encode'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 998, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 721, in process_client_data
+    encrypted_data_map = {key: encrypt_data(value) for key, value in client_data.items()}
+                               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 104, in encrypt_data
+    encrypted_data = f.encrypt(data.encode())
+                               ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'encode'
+2024-12-18 10:26:10,585 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:26:10,588 - INFO - Request to users/get_current_account
+2024-12-18 10:26:10,601 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:26:14,207 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:26:14,212 - INFO - Dropbox access token is valid.
+2024-12-18 10:29:47,732 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:29:47,735 - INFO - Request to users/get_current_account
+2024-12-18 10:29:47,749 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:29:48,583 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:29:48,586 - INFO - Request to users/get_current_account
+2024-12-18 10:29:48,599 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:29:50,879 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:29:50,881 - INFO - Dropbox access token is valid.
+2024-12-18 10:29:50,885 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:29:50,895 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:29:51,124 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:29:51,129 - INFO - Dropbox access token is valid.
+2024-12-18 10:29:51,133 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:29:51,134 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:29:52,305 - INFO - Database connection established successfully.
+2024-12-18 10:29:52,306 - INFO - Database initialized successfully.
+2024-12-18 10:29:52,309 - DEBUG - Submit button enabled.
+2024-12-18 10:29:52,466 - INFO - Database connection established successfully.
+2024-12-18 10:29:52,467 - INFO - Database initialized successfully.
+2024-12-18 10:29:52,467 - DEBUG - Submit button enabled.
+2024-12-18 10:30:31,173 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:30:31,176 - DEBUG - Email validation for 'matthood29@yahoo.com': True
+2024-12-18 10:30:31,177 - DEBUG - Phone validation for '423-567-8948': True
+2024-12-18 10:30:31,178 - DEBUG - Address validation for '2339 Maxine Dr., Marietta, GA 30067': True
+2024-12-18 10:30:31,182 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,185 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,187 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,189 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,190 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,192 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,194 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,196 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,198 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,200 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,203 - DEBUG - Data encrypted.
+2024-12-18 10:30:31,417 - ERROR - Error inserting data into the database: ('HYS22', "[HYS22] [Microsoft][ODBC Microsoft Access Driver] The INSERT INTO statement contains the following unknown field name: 'Client_First_Name'. Make sure you have typed the name correctly, and try the operation again. (-1507) (SQLParamData)")
+2024-12-18 10:30:31,418 - ERROR - Inserting client data failed: ('HYS22', "[HYS22] [Microsoft][ODBC Microsoft Access Driver] The INSERT INTO statement contains the following unknown field name: 'Client_First_Name'. Make sure you have typed the name correctly, and try the operation again. (-1507) (SQLParamData)")
+2024-12-18 10:30:42,591 - ERROR - An unexpected error occurred: ('HYS22', "[HYS22] [Microsoft][ODBC Microsoft Access Driver] The INSERT INTO statement contains the following unknown field name: 'Client_First_Name'. Make sure you have typed the name correctly, and try the operation again. (-1507) (SQLParamData)")
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 999, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 727, in process_client_data
+    insert_client_data(db_conn, encrypted_data_map)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 479, in insert_client_data
+    cursor.execute(
+pyodbc.Error: ('HYS22', "[HYS22] [Microsoft][ODBC Microsoft Access Driver] The INSERT INTO statement contains the following unknown field name: 'Client_First_Name'. Make sure you have typed the name correctly, and try the operation again. (-1507) (SQLParamData)")
+2024-12-18 10:32:47,449 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:32:47,458 - INFO - Request to users/get_current_account
+2024-12-18 10:32:47,503 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:32:54,835 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:32:54,840 - INFO - Dropbox access token is valid.
+2024-12-18 10:32:54,876 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:32:54,887 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:33:06,923 - INFO - Database connection established successfully.
+2024-12-18 10:33:06,924 - INFO - Database initialized successfully.
+2024-12-18 10:33:06,929 - DEBUG - Submit button enabled.
+2024-12-18 10:33:34,818 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:33:34,820 - DEBUG - Email validation for 'matt@matt.com': True
+2024-12-18 10:33:34,820 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 10:33:34,820 - DEBUG - Address validation for '123 Main Street, Atlanta, GA 30339': True
+2024-12-18 10:33:34,863 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:33:34,864 - ERROR - The following required columns are missing in the 'Clients' table: ['ClientFirstName', 'ClientLastName', 'OpposingParty', 'ClientEmail', 'ClientAddress', 'ClientPhone', 'FeeArrangement', 'HourlyRate', 'ContingencyPercentage', 'PrimaryAttorney']
+2024-12-18 10:33:59,315 - WARNING - Validation error: The following required columns are missing in the 'Clients' table: ['ClientFirstName', 'ClientLastName', 'OpposingParty', 'ClientEmail', 'ClientAddress', 'ClientPhone', 'FeeArrangement', 'HourlyRate', 'ContingencyPercentage', 'PrimaryAttorney']
+2024-12-18 10:35:11,912 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:35:11,917 - INFO - Request to users/get_current_account
+2024-12-18 10:35:11,936 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:35:16,390 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:35:16,396 - INFO - Dropbox access token is valid.
+2024-12-18 10:35:16,402 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:35:16,404 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:35:18,586 - INFO - Database connection established successfully.
+2024-12-18 10:35:18,587 - INFO - Database initialized successfully.
+2024-12-18 10:35:18,588 - DEBUG - Submit button enabled.
+2024-12-18 10:36:28,259 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:36:28,260 - DEBUG - Email validation for 'jdfaks@email.com': True
+2024-12-18 10:36:28,260 - DEBUG - Phone validation for '233-232-2322': True
+2024-12-18 10:36:28,261 - DEBUG - Address validation for '123 Main Street, ATlanta, GA 30339': True
+2024-12-18 10:36:28,292 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:36:28,294 - ERROR - The following required columns are missing in the 'Clients' table: ['ClientFirstName', 'ClientLastName', 'OpposingParty', 'ClientEmail', 'ClientAddress', 'ClientPhone', 'FeeArrangement', 'HourlyRate', 'ContingencyPercentage', 'PrimaryAttorney']
+2024-12-18 10:36:39,820 - WARNING - Validation error: The following required columns are missing in the 'Clients' table: ['ClientFirstName', 'ClientLastName', 'OpposingParty', 'ClientEmail', 'ClientAddress', 'ClientPhone', 'FeeArrangement', 'HourlyRate', 'ContingencyPercentage', 'PrimaryAttorney']
+2024-12-18 10:37:47,809 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:37:47,815 - INFO - Request to users/get_current_account
+2024-12-18 10:37:47,832 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:37:48,835 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:37:48,839 - INFO - Request to users/get_current_account
+2024-12-18 10:37:48,860 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:37:52,615 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:37:52,617 - INFO - Dropbox access token is valid.
+2024-12-18 10:37:52,620 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:37:52,622 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:37:52,705 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:37:52,710 - INFO - Dropbox access token is valid.
+2024-12-18 10:37:52,716 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:37:52,717 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:37:54,296 - INFO - Database connection established successfully.
+2024-12-18 10:37:54,298 - INFO - Database initialized successfully.
+2024-12-18 10:37:54,299 - DEBUG - Submit button enabled.
+2024-12-18 10:37:54,323 - INFO - Database connection established successfully.
+2024-12-18 10:37:54,324 - INFO - Database initialized successfully.
+2024-12-18 10:37:54,326 - DEBUG - Submit button enabled.
+2024-12-18 10:38:20,870 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:38:20,871 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:38:20,873 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:38:20,873 - DEBUG - Address validation for '123 Main St. Atlanta GA 30339': False
+2024-12-18 10:38:20,873 - WARNING - Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:38:23,058 - WARNING - Validation error: Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:38:31,961 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:38:31,962 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:38:31,962 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:38:31,962 - DEBUG - Address validation for '123 Main St., Atlanta GA 30339': False
+2024-12-18 10:38:31,963 - WARNING - Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:38:33,209 - WARNING - Validation error: Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:38:37,134 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:38:37,134 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:38:37,134 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:38:37,134 - DEBUG - Address validation for '123 Main St., Atlanta GA 30339': False
+2024-12-18 10:38:37,135 - WARNING - Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:38:38,583 - WARNING - Validation error: Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:39:00,284 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:39:00,284 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:39:00,285 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:39:00,285 - DEBUG - Address validation for '123 Main St., Alanta, ga 30339': False
+2024-12-18 10:39:00,285 - WARNING - Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:39:02,307 - WARNING - Validation error: Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:39:21,533 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:39:21,533 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:39:21,535 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:39:21,535 - DEBUG - Address validation for '123 Main St., Alanta, GA 30339': True
+2024-12-18 10:39:21,571 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:39:21,572 - ERROR - The following required columns are missing in the 'Clients' table: ['Hourly_Rate', 'Contingency_Percentage', 'Encrypted_Data']
+2024-12-18 10:39:25,235 - WARNING - Validation error: The following required columns are missing in the 'Clients' table: ['Hourly_Rate', 'Contingency_Percentage', 'Encrypted_Data']
+2024-12-18 10:39:27,603 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:39:27,603 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:39:27,603 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:39:27,603 - DEBUG - Address validation for '123 Main St., Alanta, GA 30339': True
+2024-12-18 10:39:27,606 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:39:27,606 - ERROR - The following required columns are missing in the 'Clients' table: ['Hourly_Rate', 'Contingency_Percentage', 'Encrypted_Data']
+2024-12-18 10:39:40,371 - WARNING - Validation error: The following required columns are missing in the 'Clients' table: ['Hourly_Rate', 'Contingency_Percentage', 'Encrypted_Data']
+2024-12-18 10:40:12,798 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:40:12,798 - DEBUG - Email validation for 'Oppo@oppo.com': True
+2024-12-18 10:40:12,799 - DEBUG - Phone validation for '234-232-2322': True
+2024-12-18 10:40:12,799 - DEBUG - Address validation for '123 Main St., Alanta, GA 30339': True
+2024-12-18 10:40:12,801 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:40:12,802 - ERROR - The following required columns are missing in the 'Clients' table: ['Hourly_Rate', 'Contingency_Percentage', 'Encrypted_Data']
+2024-12-18 10:40:14,246 - WARNING - Validation error: The following required columns are missing in the 'Clients' table: ['Hourly_Rate', 'Contingency_Percentage', 'Encrypted_Data']
+2024-12-18 10:41:13,800 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:41:13,806 - INFO - Request to users/get_current_account
+2024-12-18 10:41:13,828 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:41:18,290 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:41:18,294 - INFO - Dropbox access token is valid.
+2024-12-18 10:41:18,304 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:41:18,306 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:41:19,697 - INFO - Database connection established successfully.
+2024-12-18 10:41:19,699 - INFO - Database initialized successfully.
+2024-12-18 10:41:19,699 - DEBUG - Submit button enabled.
+2024-12-18 10:41:40,706 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:41:40,707 - DEBUG - Email validation for 'matt@matt.com': True
+2024-12-18 10:41:40,707 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 10:41:40,708 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 10:41:40,737 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:41:40,737 - ERROR - The following required columns are missing in the 'Clients' table: ['HourlyRate', 'ContingencyPercentage']
+2024-12-18 10:41:58,519 - WARNING - Validation error: The following required columns are missing in the 'Clients' table: ['HourlyRate', 'ContingencyPercentage']
+2024-12-18 10:50:04,722 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:50:04,724 - INFO - Request to users/get_current_account
+2024-12-18 10:50:04,740 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:50:07,395 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:50:07,397 - INFO - Dropbox access token is valid.
+2024-12-18 10:50:07,405 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:50:07,406 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:50:08,306 - INFO - Database connection established successfully.
+2024-12-18 10:50:08,306 - INFO - Database initialized successfully.
+2024-12-18 10:50:08,343 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:50:08,344 - ERROR - Missing columns in 'Clients' table: ['Contingency_amount', 'Primary_Att']
+2024-12-18 10:50:08,345 - ERROR - Failed to initialize database after Dropbox authentication: Missing columns in 'Clients' table: ['Contingency_amount', 'Primary_Att']
+2024-12-18 10:52:27,854 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:52:27,859 - INFO - Request to users/get_current_account
+2024-12-18 10:52:27,879 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:52:28,969 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:52:28,971 - INFO - Request to users/get_current_account
+2024-12-18 10:52:28,983 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:52:34,287 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:52:34,290 - INFO - Dropbox access token is valid.
+2024-12-18 10:52:34,309 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:52:34,313 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:52:36,506 - INFO - Database connection established successfully.
+2024-12-18 10:52:36,507 - INFO - Database initialized successfully.
+2024-12-18 10:52:36,579 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:52:36,579 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 10:52:36,580 - DEBUG - Submit button enabled.
+2024-12-18 10:53:02,684 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:53:02,685 - DEBUG - Email validation for 'oppo@oppo.com': True
+2024-12-18 10:53:02,685 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 10:53:02,686 - DEBUG - Address validation for '123 Main St. Atlanta, GA 30339': False
+2024-12-18 10:53:02,686 - WARNING - Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:53:04,650 - WARNING - Validation error: Invalid address format. Please include street, city, state, and zip code.
+2024-12-18 10:53:13,626 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:53:13,627 - DEBUG - Email validation for 'oppo@oppo.com': True
+2024-12-18 10:53:13,627 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 10:53:13,627 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 10:53:13,630 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:53:13,632 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,633 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,634 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,635 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,636 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,637 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,638 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,639 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,640 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,641 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,642 - DEBUG - Data encrypted.
+2024-12-18 10:53:13,656 - ERROR - Error inserting data into the database: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:53:13,656 - ERROR - Inserting client data failed: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:53:17,047 - ERROR - An unexpected error occurred: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1086, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 806, in process_client_data
+    insert_client_data(db_conn, encrypted_data_map)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 521, in insert_client_data
+    cursor.execute(
+pyodbc.DataError: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:53:30,784 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:53:30,785 - DEBUG - Email validation for 'oppo@oppo.com': True
+2024-12-18 10:53:30,785 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 10:53:30,785 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 10:53:30,788 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:53:30,790 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,792 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,794 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,796 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,798 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,799 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,801 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,803 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,804 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,806 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,807 - DEBUG - Data encrypted.
+2024-12-18 10:53:30,811 - ERROR - Error inserting data into the database: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:53:30,811 - ERROR - Inserting client data failed: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:53:37,572 - ERROR - An unexpected error occurred: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1086, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 806, in process_client_data
+    insert_client_data(db_conn, encrypted_data_map)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 521, in insert_client_data
+    cursor.execute(
+pyodbc.DataError: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:57:05,216 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:57:05,221 - INFO - Request to users/get_current_account
+2024-12-18 10:57:05,237 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:57:06,051 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 10:57:06,057 - INFO - Request to users/get_current_account
+2024-12-18 10:57:06,075 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 10:57:08,864 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:57:08,867 - INFO - Dropbox access token is valid.
+2024-12-18 10:57:08,872 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:57:08,880 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:57:09,478 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 10:57:09,480 - INFO - Dropbox access token is valid.
+2024-12-18 10:57:09,483 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 10:57:09,495 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 10:57:10,153 - INFO - Database connection established successfully.
+2024-12-18 10:57:10,154 - INFO - Database initialized successfully.
+2024-12-18 10:57:10,200 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:57:10,201 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 10:57:10,202 - DEBUG - Submit button enabled.
+2024-12-18 10:57:10,849 - INFO - Database connection established successfully.
+2024-12-18 10:57:10,850 - INFO - Database initialized successfully.
+2024-12-18 10:57:10,879 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:57:10,879 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 10:57:10,880 - DEBUG - Submit button enabled.
+2024-12-18 10:58:27,893 - INFO - Submit button clicked. Processing client data.
+2024-12-18 10:58:27,896 - DEBUG - Email validation for 'jakdsf@fadksj.com': True
+2024-12-18 10:58:27,897 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 10:58:27,898 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 10:58:27,901 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 10:58:27,905 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,907 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,909 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,911 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,912 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,914 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,916 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,917 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,920 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,921 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,923 - DEBUG - Data encrypted.
+2024-12-18 10:58:27,946 - ERROR - Error inserting data into the database: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:58:27,946 - ERROR - Inserting client data failed: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 10:58:30,787 - ERROR - An unexpected error occurred: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1086, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 806, in process_client_data
+    insert_client_data(db_conn, encrypted_data_map)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 521, in insert_client_data
+    cursor.execute(
+pyodbc.DataError: ('22018', '[22018] [Microsoft][ODBC Microsoft Access Driver] Data type mismatch in criteria expression. (-3030) (SQLParamData)')
+2024-12-18 11:04:42,959 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:04:42,961 - INFO - Request to users/get_current_account
+2024-12-18 11:04:42,975 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:04:47,372 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:04:47,378 - INFO - Dropbox access token is valid.
+2024-12-18 11:04:47,401 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:04:47,402 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:04:49,722 - INFO - Database connection established successfully.
+2024-12-18 11:04:49,722 - INFO - Database initialized successfully.
+2024-12-18 11:04:49,794 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:04:49,795 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:04:49,796 - DEBUG - Submit button enabled.
+2024-12-18 11:05:22,723 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:05:22,724 - DEBUG - Email validation for 'maksdf@ackj.com': True
+2024-12-18 11:05:22,724 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:05:22,724 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:05:22,726 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:05:40,365 - ERROR - An unexpected error occurred: float() argument must be a string or a real number, not 'NoneType'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1059, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 765, in process_client_data
+    client_data['Contingency_Amount'] = float(client_data.get('Contingency_Percentage', "0.0"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: float() argument must be a string or a real number, not 'NoneType'
+2024-12-18 11:09:25,656 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:09:25,660 - INFO - Request to users/get_current_account
+2024-12-18 11:09:25,674 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:09:29,784 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:09:29,788 - INFO - Dropbox access token is valid.
+2024-12-18 11:09:29,798 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:09:29,800 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:09:31,662 - INFO - Database connection established successfully.
+2024-12-18 11:09:31,662 - INFO - Database initialized successfully.
+2024-12-18 11:09:31,716 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:09:31,717 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:09:31,718 - DEBUG - Submit button enabled.
+2024-12-18 11:09:58,659 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:09:58,662 - DEBUG - Email validation for 'fdajk@fgjaldk.com': True
+2024-12-18 11:09:58,663 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:09:58,664 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:09:58,670 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:09:58,676 - DEBUG - Data encrypted.
+2024-12-18 11:09:58,690 - INFO - Client data stored successfully in the database.
+2024-12-18 11:09:58,692 - INFO - Request to files/create_folder_v2
+2024-12-18 11:09:59,294 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:09:59,296 - INFO - Main folder created: /Matt_Dsaf
+2024-12-18 11:09:59,297 - INFO - Request to files/create_folder_v2
+2024-12-18 11:09:59,860 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:09:59,864 - INFO - Subfolder created: /Matt_Dsaf/Pleadings
+2024-12-18 11:09:59,865 - INFO - Request to files/create_folder_v2
+2024-12-18 11:10:00,507 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:10:00,508 - INFO - Subfolder created: /Matt_Dsaf/Correspondence
+2024-12-18 11:10:00,509 - INFO - Request to files/create_folder_v2
+2024-12-18 11:10:01,115 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:10:01,117 - INFO - Subfolder created: /Matt_Dsaf/Prelitigation
+2024-12-18 11:10:01,118 - INFO - Request to files/create_folder_v2
+2024-12-18 11:10:01,684 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:10:01,685 - INFO - Subfolder created: /Matt_Dsaf/Case Notes
+2024-12-18 11:10:01,688 - ERROR - Error creating fee agreement: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:10:01,711 - ERROR - Failed to process fee agreement: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:10:01,716 - ERROR - Processing fee agreement failed: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:10:13,793 - ERROR - An unexpected error occurred: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\users\matt\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:11:30,590 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:11:30,595 - INFO - Request to users/get_current_account
+2024-12-18 11:11:30,614 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:11:31,226 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:11:31,227 - INFO - Request to users/get_current_account
+2024-12-18 11:11:31,241 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:11:35,655 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:11:35,657 - INFO - Dropbox access token is valid.
+2024-12-18 11:11:35,667 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:11:35,668 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:11:36,383 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:11:36,386 - INFO - Dropbox access token is valid.
+2024-12-18 11:11:36,390 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:11:36,392 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:11:37,878 - INFO - Database connection established successfully.
+2024-12-18 11:11:37,879 - INFO - Database initialized successfully.
+2024-12-18 11:11:37,936 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:11:37,937 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:11:37,938 - DEBUG - Submit button enabled.
+2024-12-18 11:11:39,035 - INFO - Database connection established successfully.
+2024-12-18 11:11:39,036 - INFO - Database initialized successfully.
+2024-12-18 11:11:39,104 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:11:39,105 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:11:39,107 - DEBUG - Submit button enabled.
+2024-12-18 11:12:12,473 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:12:12,476 - DEBUG - Email validation for 'sdajk@fklasd.com': True
+2024-12-18 11:12:12,477 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:12:12,478 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:12:12,482 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:12:12,486 - DEBUG - Data encrypted.
+2024-12-18 11:12:12,501 - INFO - Client data stored successfully in the database.
+2024-12-18 11:12:12,503 - INFO - Request to files/create_folder_v2
+2024-12-18 11:12:13,118 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 125
+2024-12-18 11:12:13,120 - INFO - Main folder created: /Dsaf_Sda
+2024-12-18 11:12:13,121 - INFO - Request to files/create_folder_v2
+2024-12-18 11:12:13,713 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:12:13,715 - INFO - Subfolder created: /Dsaf_Sda/Pleadings
+2024-12-18 11:12:13,715 - INFO - Request to files/create_folder_v2
+2024-12-18 11:12:14,331 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:12:14,332 - INFO - Subfolder created: /Dsaf_Sda/Correspondence
+2024-12-18 11:12:14,333 - INFO - Request to files/create_folder_v2
+2024-12-18 11:12:14,959 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:12:14,961 - INFO - Subfolder created: /Dsaf_Sda/Prelitigation
+2024-12-18 11:12:14,961 - INFO - Request to files/create_folder_v2
+2024-12-18 11:12:15,576 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:12:15,578 - INFO - Subfolder created: /Dsaf_Sda/Case Notes
+2024-12-18 11:12:15,579 - ERROR - Error creating fee agreement: Package not found at 'C:\users\matt\dropbox\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\users\matt\dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:12:15,593 - ERROR - Failed to process fee agreement: Package not found at 'C:\users\matt\dropbox\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\users\matt\dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:12:15,597 - ERROR - Processing fee agreement failed: Package not found at 'C:\users\matt\dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:14:35,436 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:14:35,438 - INFO - Request to users/get_current_account
+2024-12-18 11:14:35,448 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:14:37,965 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:14:37,967 - INFO - Dropbox access token is valid.
+2024-12-18 11:14:37,971 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:14:37,971 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:14:38,884 - INFO - Database connection established successfully.
+2024-12-18 11:14:38,885 - INFO - Database initialized successfully.
+2024-12-18 11:14:38,918 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:14:38,918 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:14:38,919 - DEBUG - Submit button enabled.
+2024-12-18 11:15:03,530 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:15:03,531 - DEBUG - Email validation for 'ksafj@fsakj.com': True
+2024-12-18 11:15:03,531 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:15:03,532 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:15:03,533 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:15:03,535 - DEBUG - Data encrypted.
+2024-12-18 11:15:03,540 - INFO - Client data stored successfully in the database.
+2024-12-18 11:15:03,540 - INFO - Request to files/create_folder_v2
+2024-12-18 11:15:04,146 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:15:04,146 - INFO - Main folder created: /Test_Client
+2024-12-18 11:15:04,147 - INFO - Request to files/create_folder_v2
+2024-12-18 11:15:04,832 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:15:04,832 - INFO - Subfolder created: /Test_Client/Pleadings
+2024-12-18 11:15:04,833 - INFO - Request to files/create_folder_v2
+2024-12-18 11:15:05,412 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:15:05,412 - INFO - Subfolder created: /Test_Client/Correspondence
+2024-12-18 11:15:05,413 - INFO - Request to files/create_folder_v2
+2024-12-18 11:15:06,184 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:15:06,185 - INFO - Subfolder created: /Test_Client/Prelitigation
+2024-12-18 11:15:06,185 - INFO - Request to files/create_folder_v2
+2024-12-18 11:15:06,788 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:15:06,789 - INFO - Subfolder created: /Test_Client/Case Notes
+2024-12-18 11:15:06,790 - ERROR - Error creating fee agreement: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:15:06,799 - ERROR - Failed to process fee agreement: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:15:06,801 - ERROR - Processing fee agreement failed: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:15:23,698 - ERROR - An unexpected error occurred: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'
+2024-12-18 11:18:31,304 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:18:31,307 - INFO - Request to users/get_current_account
+2024-12-18 11:18:31,319 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:18:33,685 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:18:33,691 - INFO - Dropbox access token is valid.
+2024-12-18 11:18:33,699 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:18:33,701 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:18:34,760 - INFO - Database connection established successfully.
+2024-12-18 11:18:34,760 - INFO - Database initialized successfully.
+2024-12-18 11:18:34,785 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:18:34,785 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:18:34,786 - DEBUG - Submit button enabled.
+2024-12-18 11:19:01,147 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:19:01,149 - DEBUG - Email validation for 'fdajk@fkadjs.com': True
+2024-12-18 11:19:01,149 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:19:01,150 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:19:01,153 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:19:01,155 - DEBUG - Data encrypted.
+2024-12-18 11:19:01,165 - INFO - Client data stored successfully in the database.
+2024-12-18 11:19:01,167 - INFO - Request to files/create_folder_v2
+2024-12-18 11:19:01,531 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:19:01,533 - INFO - Main folder already exists: /Test_Client
+2024-12-18 11:19:01,533 - INFO - Request to files/create_folder_v2
+2024-12-18 11:19:01,988 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:19:01,990 - INFO - Subfolder already exists: /Test_Client/Pleadings
+2024-12-18 11:19:01,990 - INFO - Request to files/create_folder_v2
+2024-12-18 11:19:02,344 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:19:02,345 - INFO - Subfolder already exists: /Test_Client/Correspondence
+2024-12-18 11:19:02,346 - INFO - Request to files/create_folder_v2
+2024-12-18 11:19:02,685 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:19:02,686 - INFO - Subfolder already exists: /Test_Client/Prelitigation
+2024-12-18 11:19:02,687 - INFO - Request to files/create_folder_v2
+2024-12-18 11:19:03,014 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:19:03,016 - INFO - Subfolder already exists: /Test_Client/Case Notes
+2024-12-18 11:19:03,017 - ERROR - Error creating fee agreement: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:19:03,034 - ERROR - Failed to process fee agreement: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:19:03,039 - ERROR - Processing fee agreement failed: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:19:07,212 - ERROR - An unexpected error occurred: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:20:55,947 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:20:55,952 - INFO - Request to users/get_current_account
+2024-12-18 11:20:55,962 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:20:57,974 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:20:57,976 - INFO - Dropbox access token is valid.
+2024-12-18 11:20:57,982 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:20:57,982 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:20:58,853 - INFO - Database connection established successfully.
+2024-12-18 11:20:58,853 - INFO - Database initialized successfully.
+2024-12-18 11:20:58,879 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:20:58,879 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:20:58,880 - DEBUG - Submit button enabled.
+2024-12-18 11:21:27,903 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:21:27,906 - DEBUG - Email validation for 'adsj@akdj.com': True
+2024-12-18 11:21:27,906 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:21:27,907 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:21:27,909 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:21:27,912 - DEBUG - Data encrypted.
+2024-12-18 11:21:27,920 - INFO - Client data stored successfully in the database.
+2024-12-18 11:21:27,921 - INFO - Request to files/create_folder_v2
+2024-12-18 11:21:28,244 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:21:28,249 - INFO - Main folder already exists: /Test_Client
+2024-12-18 11:21:28,249 - INFO - Request to files/create_folder_v2
+2024-12-18 11:21:28,588 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:21:28,589 - INFO - Subfolder already exists: /Test_Client/Pleadings
+2024-12-18 11:21:28,589 - INFO - Request to files/create_folder_v2
+2024-12-18 11:21:28,929 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:21:28,930 - INFO - Subfolder already exists: /Test_Client/Correspondence
+2024-12-18 11:21:28,930 - INFO - Request to files/create_folder_v2
+2024-12-18 11:21:29,258 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:21:29,260 - INFO - Subfolder already exists: /Test_Client/Prelitigation
+2024-12-18 11:21:29,261 - INFO - Request to files/create_folder_v2
+2024-12-18 11:21:29,576 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:21:29,577 - INFO - Subfolder already exists: /Test_Client/Case Notes
+2024-12-18 11:21:29,579 - ERROR - Error creating fee agreement: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:21:29,589 - ERROR - Failed to process fee agreement: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:21:29,592 - ERROR - Processing fee agreement failed: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:22:30,670 - ERROR - An unexpected error occurred: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:23:49,676 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:23:49,680 - INFO - Request to users/get_current_account
+2024-12-18 11:23:49,692 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:23:52,955 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:23:52,959 - INFO - Dropbox access token is valid.
+2024-12-18 11:23:52,981 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:23:52,982 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:23:54,651 - INFO - Database connection established successfully.
+2024-12-18 11:23:54,651 - INFO - Database initialized successfully.
+2024-12-18 11:23:54,697 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:23:54,698 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:23:54,699 - DEBUG - Submit button enabled.
+2024-12-18 11:24:25,453 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:24:25,454 - DEBUG - Email validation for 'asdjk@fdajskl.com': True
+2024-12-18 11:24:25,455 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:24:25,455 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:24:25,457 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:24:25,459 - DEBUG - Data encrypted.
+2024-12-18 11:24:25,465 - INFO - Client data stored successfully in the database.
+2024-12-18 11:24:25,466 - INFO - Request to files/create_folder_v2
+2024-12-18 11:24:25,786 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:24:25,790 - INFO - Main folder already exists: /Test_Client
+2024-12-18 11:24:25,791 - INFO - Request to files/create_folder_v2
+2024-12-18 11:24:26,126 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:24:26,128 - INFO - Subfolder already exists: /Test_Client/Pleadings
+2024-12-18 11:24:26,129 - INFO - Request to files/create_folder_v2
+2024-12-18 11:24:26,457 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:24:26,459 - INFO - Subfolder already exists: /Test_Client/Correspondence
+2024-12-18 11:24:26,460 - INFO - Request to files/create_folder_v2
+2024-12-18 11:24:26,782 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:24:26,784 - INFO - Subfolder already exists: /Test_Client/Prelitigation
+2024-12-18 11:24:26,785 - INFO - Request to files/create_folder_v2
+2024-12-18 11:24:27,109 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:24:27,110 - INFO - Subfolder already exists: /Test_Client/Case Notes
+2024-12-18 11:24:27,112 - ERROR - Error creating fee agreement: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:24:27,129 - ERROR - Failed to process fee agreement: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:24:27,134 - ERROR - Processing fee agreement failed: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:24:30,935 - ERROR - An unexpected error occurred: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:/Users/Matt/Dropbox/Client Intake Program/Fee_Agreement.docx'
+2024-12-18 11:28:54,809 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:28:54,814 - INFO - Request to users/get_current_account
+2024-12-18 11:28:54,828 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:28:58,145 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:28:58,148 - INFO - Dropbox access token is valid.
+2024-12-18 11:28:58,158 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:28:58,159 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:28:59,786 - INFO - Database connection established successfully.
+2024-12-18 11:28:59,786 - INFO - Database initialized successfully.
+2024-12-18 11:28:59,837 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:28:59,838 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:28:59,839 - DEBUG - Submit button enabled.
+2024-12-18 11:29:30,658 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:29:30,660 - DEBUG - Email validation for 'dsjk@fkadj.com': True
+2024-12-18 11:29:30,662 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:29:30,662 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:29:30,665 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:29:30,667 - DEBUG - Data encrypted.
+2024-12-18 11:29:30,676 - INFO - Client data stored successfully in the database.
+2024-12-18 11:29:30,677 - INFO - Request to files/create_folder_v2
+2024-12-18 11:29:31,035 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:29:31,039 - INFO - Main folder already exists: /Test_Client
+2024-12-18 11:29:31,040 - INFO - Request to files/create_folder_v2
+2024-12-18 11:29:31,362 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:29:31,363 - INFO - Subfolder already exists: /Test_Client/Pleadings
+2024-12-18 11:29:31,365 - INFO - Request to files/create_folder_v2
+2024-12-18 11:29:31,710 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:29:31,712 - INFO - Subfolder already exists: /Test_Client/Correspondence
+2024-12-18 11:29:31,712 - INFO - Request to files/create_folder_v2
+2024-12-18 11:29:32,068 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:29:32,069 - INFO - Subfolder already exists: /Test_Client/Prelitigation
+2024-12-18 11:29:32,070 - INFO - Request to files/create_folder_v2
+2024-12-18 11:29:32,393 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 409 None
+2024-12-18 11:29:32,394 - INFO - Subfolder already exists: /Test_Client/Case Notes
+2024-12-18 11:29:32,396 - ERROR - Error creating fee agreement: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:29:32,412 - ERROR - Failed to process fee agreement: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:29:32,415 - ERROR - Processing fee agreement failed: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:29:48,724 - ERROR - An unexpected error occurred: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:30:07,071 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:30:07,074 - INFO - Request to users/get_current_account
+2024-12-18 11:30:07,084 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:30:09,379 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:30:09,382 - INFO - Dropbox access token is valid.
+2024-12-18 11:30:09,390 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:30:09,391 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:30:10,574 - INFO - Database connection established successfully.
+2024-12-18 11:30:10,575 - INFO - Database initialized successfully.
+2024-12-18 11:30:10,612 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:30:10,612 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:30:10,613 - DEBUG - Submit button enabled.
+2024-12-18 11:30:35,138 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:30:35,141 - DEBUG - Email validation for 'fdas@asdkjf.com': True
+2024-12-18 11:30:35,141 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:30:35,142 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 11:30:35,146 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:30:35,149 - DEBUG - Data encrypted.
+2024-12-18 11:30:35,161 - INFO - Client data stored successfully in the database.
+2024-12-18 11:30:35,162 - INFO - Request to files/create_folder_v2
+2024-12-18 11:30:35,787 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:30:35,789 - INFO - Main folder created: /Adsf_Sadf
+2024-12-18 11:30:35,790 - INFO - Request to files/create_folder_v2
+2024-12-18 11:30:36,433 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:30:36,435 - INFO - Subfolder created: /Adsf_Sadf/Pleadings
+2024-12-18 11:30:36,436 - INFO - Request to files/create_folder_v2
+2024-12-18 11:30:37,056 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:30:37,058 - INFO - Subfolder created: /Adsf_Sadf/Correspondence
+2024-12-18 11:30:37,058 - INFO - Request to files/create_folder_v2
+2024-12-18 11:30:37,715 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:30:37,716 - INFO - Subfolder created: /Adsf_Sadf/Prelitigation
+2024-12-18 11:30:37,717 - INFO - Request to files/create_folder_v2
+2024-12-18 11:30:38,536 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:30:38,537 - INFO - Subfolder created: /Adsf_Sadf/Case Notes
+2024-12-18 11:30:38,539 - ERROR - Error creating fee agreement: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:30:38,554 - ERROR - Failed to process fee agreement: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:30:38,557 - ERROR - Processing fee agreement failed: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:30:41,697 - ERROR - An unexpected error occurred: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:32:25,981 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 11:32:25,987 - INFO - Request to users/get_current_account
+2024-12-18 11:32:26,010 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 11:32:30,284 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 11:32:30,289 - INFO - Dropbox access token is valid.
+2024-12-18 11:32:30,296 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 11:32:30,300 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Users/Matt/Dropbox/Client Intake Program/Clients1.accdb
+2024-12-18 11:32:32,997 - INFO - Database connection established successfully.
+2024-12-18 11:32:32,998 - INFO - Database initialized successfully.
+2024-12-18 11:32:33,137 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:32:33,138 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 11:32:33,139 - DEBUG - Submit button enabled.
+2024-12-18 11:33:16,588 - INFO - Submit button clicked. Processing client data.
+2024-12-18 11:33:16,593 - DEBUG - Email validation for 'daskj@dsajfl.com': True
+2024-12-18 11:33:16,594 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 11:33:16,595 - DEBUG - Address validation for '232 Main St., Atlanta, GA 30339': True
+2024-12-18 11:33:16,600 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 11:33:16,605 - DEBUG - Data encrypted.
+2024-12-18 11:33:16,627 - INFO - Client data stored successfully in the database.
+2024-12-18 11:33:16,629 - INFO - Request to files/create_folder_v2
+2024-12-18 11:33:17,069 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:33:17,071 - INFO - Main folder created: /Asdfsad_Fsdafsad
+2024-12-18 11:33:17,072 - INFO - Request to files/create_folder_v2
+2024-12-18 11:33:17,440 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:33:17,441 - INFO - Subfolder created: /Asdfsad_Fsdafsad/Pleadings
+2024-12-18 11:33:17,441 - INFO - Request to files/create_folder_v2
+2024-12-18 11:33:17,963 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:33:17,965 - INFO - Subfolder created: /Asdfsad_Fsdafsad/Correspondence
+2024-12-18 11:33:17,966 - INFO - Request to files/create_folder_v2
+2024-12-18 11:33:18,410 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:33:18,412 - INFO - Subfolder created: /Asdfsad_Fsdafsad/Prelitigation
+2024-12-18 11:33:18,412 - INFO - Request to files/create_folder_v2
+2024-12-18 11:33:18,819 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 11:33:18,820 - INFO - Subfolder created: /Asdfsad_Fsdafsad/Case Notes
+2024-12-18 11:33:18,821 - ERROR - Error creating fee agreement: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:33:18,842 - ERROR - Failed to process fee agreement: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:33:18,846 - ERROR - Processing fee agreement failed: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 11:33:24,886 - ERROR - An unexpected error occurred: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1083, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 809, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 704, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 592, in create_fee_agreement
+    document = Document(template_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\api.py", line 25, in Document
+    document_part = Package.open(docx).main_document_part
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\package.py", line 128, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\pkgreader.py", line 32, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\AppData\Local\Programs\Python\Python312\Lib\site-packages\docx\opc\phys_pkg.py", line 30, in __new__
+    raise PackageNotFoundError(
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\\Users\\Matt\\Dropbox\\Client Intake Program\\Fee_Agreement.docx'
+2024-12-18 13:57:47,767 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 13:57:47,772 - INFO - Request to users/get_current_account
+2024-12-18 13:57:47,790 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 13:57:51,497 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 13:57:51,503 - INFO - Dropbox access token is valid.
+2024-12-18 13:57:51,516 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 13:57:51,523 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-18 13:57:53,302 - INFO - Database connection established successfully.
+2024-12-18 13:57:53,302 - INFO - Database initialized successfully.
+2024-12-18 13:57:53,371 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 13:57:53,372 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 13:57:53,374 - DEBUG - Submit button enabled.
+2024-12-18 13:58:20,913 - INFO - Submit button clicked. Processing client data.
+2024-12-18 13:58:20,915 - DEBUG - Email validation for 'jojo@email.com': True
+2024-12-18 13:58:20,915 - DEBUG - Phone validation for '423-232-2322': True
+2024-12-18 13:58:20,916 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 13:58:20,919 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 13:58:20,922 - DEBUG - Data encrypted.
+2024-12-18 13:58:20,929 - INFO - Client data stored successfully in the database.
+2024-12-18 13:58:20,931 - INFO - Request to files/create_folder_v2
+2024-12-18 13:58:21,526 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 13:58:21,527 - INFO - Main folder created: /Matt_Hood
+2024-12-18 13:58:21,527 - INFO - Request to files/create_folder_v2
+2024-12-18 13:58:22,132 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 13:58:22,132 - INFO - Subfolder created: /Matt_Hood/Pleadings
+2024-12-18 13:58:22,133 - INFO - Request to files/create_folder_v2
+2024-12-18 13:58:22,724 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 13:58:22,725 - INFO - Subfolder created: /Matt_Hood/Correspondence
+2024-12-18 13:58:22,725 - INFO - Request to files/create_folder_v2
+2024-12-18 13:58:23,380 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 13:58:23,381 - INFO - Subfolder created: /Matt_Hood/Prelitigation
+2024-12-18 13:58:23,382 - INFO - Request to files/create_folder_v2
+2024-12-18 13:58:24,167 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 13:58:24,169 - INFO - Subfolder created: /Matt_Hood/Case Notes
+2024-12-18 13:58:24,169 - DEBUG - Attempting to load template from: C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx
+2024-12-18 13:58:24,170 - ERROR - Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 13:58:24,170 - ERROR - Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 13:58:24,171 - ERROR - Failed to process fee agreement: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 719, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 601, in create_fee_agreement
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 13:58:24,177 - ERROR - Processing fee agreement failed: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:03:35,443 - ERROR - An unexpected error occurred: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1098, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 824, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 719, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 601, in create_fee_agreement
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:07:36,507 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 14:07:36,513 - INFO - Request to users/get_current_account
+2024-12-18 14:07:36,536 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 14:07:40,877 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 14:07:40,880 - INFO - Dropbox access token is valid.
+2024-12-18 14:07:40,891 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 14:07:40,892 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-18 14:07:43,152 - INFO - Database connection established successfully.
+2024-12-18 14:07:43,154 - INFO - Database initialized successfully.
+2024-12-18 14:07:43,213 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 14:07:43,215 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 14:07:43,216 - DEBUG - Submit button enabled.
+2024-12-18 14:08:17,909 - INFO - Submit button clicked. Processing client data.
+2024-12-18 14:08:17,913 - DEBUG - Email validation for 'adskjf@fdkj.com': True
+2024-12-18 14:08:17,914 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 14:08:17,914 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 14:08:17,919 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 14:08:17,924 - DEBUG - Data encrypted.
+2024-12-18 14:08:17,942 - INFO - Client data stored successfully in the database.
+2024-12-18 14:08:17,944 - INFO - Request to files/create_folder_v2
+2024-12-18 14:08:18,536 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:08:18,538 - INFO - Main folder created: /Johnson_Joe
+2024-12-18 14:08:18,538 - INFO - Request to files/create_folder_v2
+2024-12-18 14:08:19,182 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:08:19,183 - INFO - Subfolder created: /Johnson_Joe/Pleadings
+2024-12-18 14:08:19,184 - INFO - Request to files/create_folder_v2
+2024-12-18 14:08:19,846 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:08:19,849 - INFO - Subfolder created: /Johnson_Joe/Correspondence
+2024-12-18 14:08:19,849 - INFO - Request to files/create_folder_v2
+2024-12-18 14:08:20,441 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:08:20,443 - INFO - Subfolder created: /Johnson_Joe/Prelitigation
+2024-12-18 14:08:20,444 - INFO - Request to files/create_folder_v2
+2024-12-18 14:08:21,029 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:08:21,030 - INFO - Subfolder created: /Johnson_Joe/Case Notes
+2024-12-18 14:08:21,031 - DEBUG - Attempting to load template from: C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx
+2024-12-18 14:08:21,032 - ERROR - Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:08:21,032 - ERROR - Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:08:21,033 - ERROR - Failed to process fee agreement: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 719, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 601, in create_fee_agreement
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:08:21,038 - ERROR - Processing fee agreement failed: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:08:26,914 - ERROR - An unexpected error occurred: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1098, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 824, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 719, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 601, in create_fee_agreement
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:14:34,509 - INFO - Access token loaded from 'dropbox_token.json'.
+2024-12-18 14:14:34,510 - INFO - Request to users/get_current_account
+2024-12-18 14:14:34,516 - DEBUG - Starting new HTTPS connection (1): api.dropboxapi.com:443
+2024-12-18 14:14:36,565 - DEBUG - https://api.dropboxapi.com:443 "POST /2/users/get_current_account HTTP/11" 200 None
+2024-12-18 14:14:36,567 - INFO - Dropbox access token is valid.
+2024-12-18 14:14:36,569 - INFO - Access token encrypted and saved to 'dropbox_token.json'.
+2024-12-18 14:14:36,570 - DEBUG - Connection string: DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Matt\Dropbox\Client Intake Program\Clients1.accdb
+2024-12-18 14:14:37,571 - INFO - Database connection established successfully.
+2024-12-18 14:14:37,572 - INFO - Database initialized successfully.
+2024-12-18 14:14:37,607 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 14:14:37,609 - INFO - All required columns are present in the 'Clients' table.
+2024-12-18 14:14:37,609 - DEBUG - Submit button enabled.
+2024-12-18 14:15:00,703 - INFO - Submit button clicked. Processing client data.
+2024-12-18 14:15:00,705 - DEBUG - Email validation for 'sdkajf@fgkjd.com': True
+2024-12-18 14:15:00,705 - DEBUG - Phone validation for '232-232-2322': True
+2024-12-18 14:15:00,706 - DEBUG - Address validation for '123 Main St., Atlanta, GA 30339': True
+2024-12-18 14:15:00,707 - INFO - Columns in 'Clients' table: ['ID', 'Client_FirstName', 'Client_LastName', 'Client_Name', 'Opposing_Party', 'Client_Email', 'Client_Address', 'Client_Phone', 'Fee_Arrangement', 'Fee_Amount', 'Contingency_Amount', 'Hourly_Amount', 'Primary_Attorney', 'EncryptedData', 'IsBosch']
+2024-12-18 14:15:00,709 - DEBUG - Data encrypted.
+2024-12-18 14:15:00,717 - INFO - Client data stored successfully in the database.
+2024-12-18 14:15:00,718 - INFO - Request to files/create_folder_v2
+2024-12-18 14:15:01,312 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:15:01,314 - INFO - Main folder created: /Testing_Testing
+2024-12-18 14:15:01,314 - INFO - Request to files/create_folder_v2
+2024-12-18 14:15:01,911 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:15:01,913 - INFO - Subfolder created: /Testing_Testing/Pleadings
+2024-12-18 14:15:01,913 - INFO - Request to files/create_folder_v2
+2024-12-18 14:15:02,514 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:15:02,515 - INFO - Subfolder created: /Testing_Testing/Correspondence
+2024-12-18 14:15:02,515 - INFO - Request to files/create_folder_v2
+2024-12-18 14:15:03,397 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:15:03,398 - INFO - Subfolder created: /Testing_Testing/Prelitigation
+2024-12-18 14:15:03,398 - INFO - Request to files/create_folder_v2
+2024-12-18 14:15:04,023 - DEBUG - https://api.dropboxapi.com:443 "POST /2/files/create_folder_v2 HTTP/11" 200 None
+2024-12-18 14:15:04,024 - INFO - Subfolder created: /Testing_Testing/Case Notes
+2024-12-18 14:15:04,024 - DEBUG - Attempting to load template from: C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx
+2024-12-18 14:15:04,025 - ERROR - Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:15:04,025 - ERROR - Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:15:04,025 - ERROR - Failed to process fee agreement: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 719, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 601, in create_fee_agreement
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:15:04,028 - ERROR - Processing fee agreement failed: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+2024-12-18 14:15:22,776 - ERROR - An unexpected error occurred: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
+Traceback (most recent call last):
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 1098, in on_submit
+    client_name = process_client_data(self.db_initializer.db_client, self.db_conn, client_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 824, in process_client_data
+    process_fee_agreement(db_client, client_data, client_name)
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 719, in process_fee_agreement
+    fee_agreement_stream = create_fee_agreement(client_data, template_path, output_filename)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Matt\PycharmProjects\MAH-Client-Intake\intake.py", line 601, in create_fee_agreement
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Fee agreement template not found at 'C:\Users\Matt\Dropbox\Client Intake Program\Fee_Agreement.docx'. Please ensure the file exists.
